@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj8t6rihfh1xj"]
+
+[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_7ox5f"]
+[ext_resource type="Resource" uid="uid://7h57nuq1xmoi" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_1hew5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6vu8"]
+
+[node name="QodotMap" type="Node3D"]
+script = ExtResource("1_7ox5f")
+map_file = "res://src/maps/tst.map"
+inverse_scale_factor = 16.0
+entity_fgd = ExtResource("2_1hew5")
+base_texture_dir = "res://textures"
+texture_file_extensions = PackedStringArray("png")
+worldspawn_layers = []
+brush_clip_texture = "special/clip"
+face_skip_texture = "special/skip"
+texture_wads = []
+material_file_extension = "tres"
+unshaded = false
+default_material_albedo_uniform = ""
+default_material = SubResource("StandardMaterial3D_o6vu8")
+uv_unwrap_texel_size = 1.0
+print_profiling_data = false
+use_trenchbroom_group_hierarchy = false
+tree_attach_batch_size = null
+set_owner_batch_size = 1000

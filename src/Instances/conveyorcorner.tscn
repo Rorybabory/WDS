@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkbls3u1vbvc4"]
+
+[ext_resource type="Script" path="res://src/Instances/conveyor.gd" id="1_h88hf"]
+[ext_resource type="Material" uid="uid://p0eoo0l48edu" path="res://src/materials/conveyor.tres" id="2_j3kgo"]
+[ext_resource type="ArrayMesh" uid="uid://dvsyabnyyq6v" path="res://src/models/conveyor_corner.obj" id="3_17703"]
+[ext_resource type="Script" path="res://src/Instances/conscroll.gd" id="4_b1sia"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjnqe"]
+size = Vector3(1.50857, 0.227659, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yyt1d"]
+size = Vector3(1, 0.233521, 0.530935)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oacou"]
+size = Vector3(2, 0.0446427, 2)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_j3kgo")
+mesh = ExtResource("3_17703")
+script = ExtResource("4_b1sia")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+input_ray_pickable = false
+script = ExtResource("1_h88hf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251348, 0, 0)
+shape = SubResource("BoxShape3D_mjnqe")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+input_ray_pickable = false
+script = ExtResource("1_h88hf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.764871)
+shape = SubResource("BoxShape3D_yyt1d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00561786, -1.30696, -0.00665821)
+shape = SubResource("BoxShape3D_oacou")

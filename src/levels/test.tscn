@@ -1,0 +1,306 @@
+[gd_scene load_steps=25 format=3 uid="uid://djnmcqavf0mvl"]
+
+[ext_resource type="Script" path="res://src/levels/level.gd" id="1_ccbe3"]
+[ext_resource type="Script" path="res://src/levels/CamControl.gd" id="2_ek2ah"]
+[ext_resource type="Material" uid="uid://c8bc7781awry6" path="res://src/materials/tile.tres" id="3_gvc7c"]
+[ext_resource type="PackedScene" uid="uid://68v6hhf3ibpr" path="res://src/Instances/Arrow.tscn" id="4_mqptd"]
+[ext_resource type="PackedScene" uid="uid://ifvsnbbmoqyh" path="res://src/Instances/Worker.tscn" id="5_8a7ge"]
+[ext_resource type="Script" path="res://src/scripts/UI.gd" id="7_4n6nt"]
+[ext_resource type="Script" path="res://src/scripts/CashUI.gd" id="7_lvl2i"]
+[ext_resource type="PackedScene" uid="uid://bsok38nlfn0go" path="res://src/Instances/Slot.tscn" id="8_hxdd2"]
+[ext_resource type="FontFile" uid="uid://bo1tkofk4owsf" path="res://src/StripedSansBlack.ttf" id="8_rb574"]
+[ext_resource type="PackedScene" uid="uid://dfjwo6hmn2hyk" path="res://src/Instances/truck.tscn" id="8_xphei"]
+[ext_resource type="Script" path="res://src/levels/ConveyorUI.gd" id="10_gb44t"]
+[ext_resource type="Material" uid="uid://b5osyi2yul6mo" path="res://src/materials/rock.tres" id="11_fxvhw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bx3a"]
+bg_color = Color(0.235294, 0.321569, 0.278431, 0.505882)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.682353, 0.862745, 0.72549, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wsu76"]
+size = Vector3(46, 1, 46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jnk1"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16mso"]
+bg_color = Color(0.388235, 0.631373, 0.792157, 0.203922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcirq"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbm0x"]
+font_size = 19
+font_color = Color(0.627451, 0.823529, 0.894118, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eae35"]
+size = Vector3(20, 12, 86)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mwof1"]
+size = Vector3(20, 12, 86)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qf5jw"]
+size = Vector3(20, 12, 46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eaeka"]
+size = Vector3(20, 12, 46)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sowwy"]
+size = Vector3(20, 12, 19)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cjk6j"]
+size = Vector3(20, 12, 19)
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_ccbe3")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1025.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bx3a")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.361153, 0.932507, 0, -0.932507, 0.361153, 0, 14.2984, 6.42433)
+script = ExtResource("2_ek2ah")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_layer = 7
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_wsu76")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = ExtResource("3_gvc7c")
+mesh = SubResource("BoxMesh_4jnk1")
+
+[node name="Arrow" parent="." instance=ExtResource("4_mqptd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51871, 0)
+
+[node name="Boxes" type="Node3D" parent="."]
+
+[node name="Target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9568, 3.92661, 0)
+
+[node name="BoxesEnd" type="Node3D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_4n6nt")
+
+[node name="Panel2" type="Panel" parent="Control"]
+layout_mode = 0
+offset_right = 1025.0
+offset_bottom = 649.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_16mso")
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 876.0
+offset_bottom = 520.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kcirq")
+
+[node name="Worker" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 138.0
+offset_right = 377.0
+offset_bottom = 169.0
+text = "Hire Worker 
+(50c per box $5 startup)"
+
+[node name="Faster" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 222.0
+offset_right = 377.0
+offset_bottom = 276.0
+text = "Faster Conveyor
+($5)"
+
+[node name="Conveyor" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 139.0
+offset_right = 604.0
+offset_bottom = 169.0
+text = "Buy 4 Conveyor ($1)"
+
+[node name="BoxReceptacle" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 631.0
+offset_top = 139.0
+offset_right = 836.0
+offset_bottom = 170.0
+text = "Buy Box Receptacle
+($10)"
+
+[node name="Trucks" type="Node3D" parent="."]
+
+[node name="Truck" parent="Trucks" instance=ExtResource("8_xphei")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.064, 0.469893, 0)
+
+[node name="Worker" parent="." instance=ExtResource("5_8a7ge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+
+[node name="Cash" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 17.0
+offset_right = 212.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("8_rb574")
+theme_override_font_sizes/font_size = 24
+text = "Balence: $0"
+label_settings = SubResource("LabelSettings_vbm0x")
+script = ExtResource("7_lvl2i")
+
+[node name="Conveyor" type="Label" parent="."]
+offset_left = 237.0
+offset_top = 17.0
+offset_right = 453.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("8_rb574")
+theme_override_font_sizes/font_size = 24
+text = "Conveyors: 0"
+label_settings = SubResource("LabelSettings_vbm0x")
+script = ExtResource("10_gb44t")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 743.0
+offset_top = 9.0
+offset_right = 1015.0
+offset_bottom = 87.0
+theme_override_fonts/font = ExtResource("8_rb574")
+text = "Press I to Open Buy Menu
+WASD to move Camera
+Backspace to delete object"
+label_settings = SubResource("LabelSettings_vbm0x")
+
+[node name="Slots" type="Node3D" parent="."]
+
+[node name="Slot" parent="Slots" instance=ExtResource("8_hxdd2")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.104, 0.5, 22)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 11.7051, -11)
+light_energy = 32.0
+light_indirect_energy = 64.0
+light_volumetric_fog_energy = 0.0
+light_size = 0.362
+spot_range = 30.2473
+spot_angle = 59.407
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -15, 11.7051, 9)
+light_energy = 32.0
+light_indirect_energy = 64.0
+light_volumetric_fog_energy = 0.0
+light_size = 0.362
+spot_range = 30.2473
+spot_angle = 59.407
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11, 11.7051, -11)
+light_energy = 32.0
+light_indirect_energy = 64.0
+light_volumetric_fog_energy = 0.0
+light_size = 0.362
+spot_range = 30.2473
+spot_angle = 59.407
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11, 11.7051, 9)
+light_energy = 32.0
+light_indirect_energy = 64.0
+light_volumetric_fog_energy = 0.0
+light_size = 0.362
+spot_range = 30.2473
+spot_angle = 59.407
+
+[node name="walls" type="Node3D" parent="."]
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -33)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="walls/StaticBody3D3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("11_fxvhw")
+mesh = SubResource("BoxMesh_eae35")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_mwof1")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 33)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="walls/StaticBody3D4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = ExtResource("11_fxvhw")
+mesh = SubResource("BoxMesh_eae35")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D4"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_mwof1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="walls"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="walls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 5, 0)
+material_override = ExtResource("11_fxvhw")
+mesh = SubResource("BoxMesh_qf5jw")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 5, 0)
+shape = SubResource("BoxShape3D_eaeka")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="walls"]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="walls/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.44784e-06, 5, -33)
+material_override = ExtResource("11_fxvhw")
+mesh = SubResource("BoxMesh_eae35")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 5, -33)
+shape = SubResource("BoxShape3D_mwof1")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 5, 13.5)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="walls/StaticBody3D5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+material_override = ExtResource("11_fxvhw")
+mesh = SubResource("BoxMesh_sowwy")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D5"]
+shape = SubResource("BoxShape3D_cjk6j")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 5, -13.5)
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="walls/StaticBody3D6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+material_override = ExtResource("11_fxvhw")
+mesh = SubResource("BoxMesh_sowwy")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="walls/StaticBody3D6"]
+shape = SubResource("BoxShape3D_cjk6j")

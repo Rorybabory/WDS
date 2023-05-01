@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfjwo6hmn2hyk"]
+
+[ext_resource type="Script" path="res://src/scripts/Truck.gd" id="1_mf42x"]
+[ext_resource type="Material" uid="uid://dgwnnjkvdjhmd" path="res://src/materials/truck.tres" id="1_o8pf3"]
+[ext_resource type="ArrayMesh" uid="uid://qr2st132atq8" path="res://src/models/truck.obj" id="2_x3pxd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0od5g"]
+size = Vector3(4.29324, 0.299152, 4.27894)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nporv"]
+size = Vector3(4.29324, 0.299152, 4.27894)
+
+[node name="Truck" type="StaticBody3D"]
+collision_layer = 4
+script = ExtResource("1_mf42x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_o8pf3")
+mesh = ExtResource("2_x3pxd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93177, 1.68986, 0)
+shape = SubResource("BoxShape3D_0od5g")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93177, 5.95902, 0)
+shape = SubResource("BoxShape3D_nporv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.93177, 3.82444, 2.13458)
+shape = SubResource("BoxShape3D_0od5g")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.93177, 3.82444, -2.13458)
+shape = SubResource("BoxShape3D_nporv")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0.308955, 3.82444, -0.0961189)
+shape = SubResource("BoxShape3D_nporv")
+
+[node name="Target" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.71973, 3.59678, 0)

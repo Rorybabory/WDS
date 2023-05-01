@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsok38nlfn0go"]
+
+[ext_resource type="Script" path="res://src/scripts/Slot.gd" id="1_eqyeq"]
+[ext_resource type="Material" uid="uid://im2gby7cn50" path="res://src/materials/slot.tres" id="1_hdgt4"]
+[ext_resource type="ArrayMesh" uid="uid://184ux7i1ddi6" path="res://src/models/slot.obj" id="2_2hmgd"]
+[ext_resource type="PackedScene" uid="uid://dlvfgjimxhk7" path="res://src/Instances/conveyor.tscn" id="3_h3kre"]
+[ext_resource type="Script" path="res://src/levels/spawner.gd" id="4_asg2q"]
+
+[node name="Slot" type="Node3D"]
+script = ExtResource("1_eqyeq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -0.014752, 0)
+material_override = ExtResource("1_hdgt4")
+mesh = ExtResource("2_2hmgd")
+
+[node name="Spawner2" type="Node3D" parent="."]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 1.13755, 0)
+script = ExtResource("4_asg2q")
+
+[node name="Conveyor" parent="Spawner2" instance=ExtResource("3_h3kre")]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -1.13755, 0)
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13755, 0)

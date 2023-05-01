@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dgwnnjkvdjhmd"]
+
+[ext_resource type="Texture2D" uid="uid://cxmuu70am3qrw" path="res://src/textures/truck.png" id="1_hx8sa"]
+
+[resource]
+albedo_texture = ExtResource("1_hx8sa")
+texture_filter = 0

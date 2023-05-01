@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://x5et3kbghwlm"]
+
+[ext_resource type="Texture2D" uid="uid://c1d21icq18v52" path="res://src/textures/opening.png" id="1_1j626"]
+[ext_resource type="Script" path="res://src/levels/Panel.gd" id="2_gxyuf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tfdh8"]
+texture = ExtResource("1_1j626")
+
+[node name="opening" type="Node3D"]
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+offset_right = 1024.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_tfdh8")
+script = ExtResource("2_gxyuf")

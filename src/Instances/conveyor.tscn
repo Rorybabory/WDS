@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlvfgjimxhk7"]
+
+[ext_resource type="Material" uid="uid://p0eoo0l48edu" path="res://src/materials/conveyor.tres" id="1_qpae6"]
+[ext_resource type="Script" path="res://src/Instances/conveyor.gd" id="1_yfxqw"]
+[ext_resource type="ArrayMesh" uid="uid://c18i106ayy3ph" path="res://src/models/conveyor.obj" id="2_d83km"]
+[ext_resource type="Script" path="res://src/Instances/conscroll.gd" id="4_3il5q"]
+[ext_resource type="AudioStream" uid="uid://cim21hw1ajpfi" path="res://src/sfx/conveyor.wav" id="5_yulqr"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4ctgs"]
+rough = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_11d3p"]
+size = Vector3(2, 0.2, 2)
+
+[node name="Conveyor" type="StaticBody3D"]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_4ctgs")
+script = ExtResource("1_yfxqw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_11d3p")
+
+[node name="meshinstance" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.054, 0, 0, 0, 1, 0, 0, 0, 1.004, 0, 0, 0)
+material_override = ExtResource("1_qpae6")
+mesh = ExtResource("2_d83km")
+script = ExtResource("4_3il5q")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_yulqr")

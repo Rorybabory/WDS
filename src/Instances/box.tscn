@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://rrwf6de1o4ih"]
+
+[ext_resource type="Material" uid="uid://clnhorakhwejj" path="res://src/boxmat.tres" id="1_gstpi"]
+[ext_resource type="Script" path="res://src/scripts/Box.gd" id="1_tbomm"]
+[ext_resource type="ArrayMesh" uid="uid://c7oaxv0fyy35i" path="res://src/box.obj" id="2_hmvxm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ok6i"]
+
+[node name="Box" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0140377, -0.00838983, -0.0119991)
+collision_mask = 7
+mass = 18.29
+lock_rotation = true
+freeze_mode = 1
+script = ExtResource("1_tbomm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1ok6i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = ExtResource("1_gstpi")
+mesh = ExtResource("2_hmvxm")

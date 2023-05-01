@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://ifvsnbbmoqyh"]
+
+[ext_resource type="Script" path="res://src/scripts/Worker.gd" id="1_mn80u"]
+[ext_resource type="Material" uid="uid://b5osyi2yul6mo" path="res://src/materials/rock.tres" id="2_1y7vd"]
+[ext_resource type="Material" uid="uid://clnhorakhwejj" path="res://src/boxmat.tres" id="2_gedw3"]
+[ext_resource type="ArrayMesh" uid="uid://c7oaxv0fyy35i" path="res://src/box.obj" id="3_ajmnl"]
+[ext_resource type="ArrayMesh" uid="uid://ddrlkw0rwf0ea" path="res://src/models/alien.obj" id="3_neyra"]
+[ext_resource type="AudioStream" uid="uid://b53y5hitbi8im" path="res://src/sfx/pickupCoin.wav" id="6_uvq7k"]
+[ext_resource type="AudioStream" uid="uid://bd6hiwdifty55" path="res://src/sfx/footsteps.wav" id="7_d32w7"]
+[ext_resource type="AudioStream" uid="uid://bqpb2y61dajvl" path="res://src/sfx/pickupbox.wav" id="8_aq5yi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwo40"]
+
+[node name="Worker" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 2
+script = ExtResource("1_mn80u")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.303, 0, 7.54979e-08, 0, -0.5, 0, -0.519116, 0)
+material_override = ExtResource("2_1y7vd")
+mesh = ExtResource("3_neyra")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fwo40")
+
+[node name="box" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.8911, -1.15916)
+material_override = ExtResource("2_gedw3")
+mesh = ExtResource("3_ajmnl")
+
+[node name="placesfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_uvq7k")
+volume_db = -14.512
+
+[node name="walksfx" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+stream = ExtResource("7_d32w7")
+
+[node name="pickupsfx" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_aq5yi")
+volume_db = -13.953
+pitch_scale = 1.02

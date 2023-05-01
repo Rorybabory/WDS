@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c8bc7781awry6"]
+
+[ext_resource type="Texture2D" uid="uid://biha0djcsxx1f" path="res://src/textures/tile.png" id="1_kvxk0"]
+
+[resource]
+albedo_texture = ExtResource("1_kvxk0")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_offset = Vector3(0.25, 0, 0.25)
+uv1_triplanar = true
+texture_filter = 0
